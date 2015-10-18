@@ -1,5 +1,8 @@
 __author__ = 'Joey Bronner'
 
+# TODO : Launch this python script using a bat file or another think like this
+# TODO : ???
+
 # Imported libraries
 import json
 import sys
@@ -26,15 +29,18 @@ print '-------------------------------------'
 
 
 def get_status(jobName):
+    # Perform Jenkins global job URL
     try:
         stream = urllib2.urlopen(JENKINS_START_URL + jobName + JENKINS_END_URL)
     except urllib2.HTTPError, e:
-        print 'URL Error: ' + str(e.code)
+        print 'Error: Problem with URL, ' + str(e.code)
         sys.exit(2)
+
+    # Parse response for global job URL
     try:
         buildStatus = json.load(stream)
     except:
-        print "Failed to parse json"
+        print "Error: Failed to parse JSON file"
         sys.exit(3)
     return jobName, buildStatus["timestamp"], buildStatus["result"],
 
