@@ -42,7 +42,7 @@ def get_status(jobName):
     except:
         print "Error: Failed to parse JSON file"
         sys.exit(3)
-    return jobName, buildStatus["timestamp"], buildStatus["result"],
+    return jobName, buildStatus["timestamp"], buildStatus["result"], buildStatus["comment"], buildStatus["displayName"],
 
 while(1):
     for job in JOBS:
