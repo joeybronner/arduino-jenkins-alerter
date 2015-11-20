@@ -18,7 +18,8 @@ SUCCESS = 's'
 FAILURE = 'f'
 BUILDING = 'b'
 UNSTABLE = 'u'
-JENKINS_START_URL = 'http://dewdflhana1265.emea.global.corp.sap:8080/job/'
+#JENKINS_START_URL = 'http://dewdflhana1265.emea.global.corp.sap:8080/job/'
+JENKINS_START_URL = 'http://dewdflhana1265.emea.global.corp.sap:8080/view/SmartBI/job/'
 JENKINS_END_URL = '/lastBuild/api/json'
 JOBS = ['build-sbi-ui-master']
 
@@ -26,7 +27,6 @@ print '---------- JENKINS LIGHTER ----------'
 print 'Developer: Joey Bronner'
 print 'Email    : joey.bronner@sap.com'
 print '-------------------------------------'
-
 
 def get_status(jobName):
     # Perform Jenkins global job URL
@@ -42,8 +42,8 @@ def get_status(jobName):
     except:
         print "Error: Failed to parse JSON file"
         sys.exit(3)
-    return jobName, buildStatus["timestamp"], buildStatus["result"], buildStatus["comment"], buildStatus["displayName"],
-
+    return jobName, buildStatus["timestamp"], buildStatus["result"], "comment", buildStatus["displayName"],
+    # buildStatus["comment"],
 while(1):
     for job in JOBS:
         status = get_status(job)
