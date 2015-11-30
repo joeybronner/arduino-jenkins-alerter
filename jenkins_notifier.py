@@ -22,6 +22,7 @@ UNSTABLE = 'u'
 JENKINS_START_URL = 'http://dewdflhana1265.emea.global.corp.sap:8080/view/SmartBI/job/'
 JENKINS_END_URL = '/lastBuild/api/json'
 JOBS = ['build-sbi-ui-master']
+INTERVAL = 2 # Seconds
 
 print '---------- JENKINS LIGHTER ----------'
 print 'Developer: Joey Bronner'
@@ -60,4 +61,4 @@ while(1):
             arduino.write(BUILDING)
 
         # Waiting time before to loop
-        time.sleep(2)
+        time.sleep(INTERVAL)
