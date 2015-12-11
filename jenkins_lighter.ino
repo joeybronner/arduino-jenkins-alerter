@@ -6,15 +6,9 @@ int incomingByte = 0;
 int redPin = 13;
 int yelPin = 12;
 int grePin = 11;
+String projectName = "YOUR-JENKINS-NAME";
 
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
-
-// Screen structure
-/* __________________
-  | XXXXXXXXXXXXXXXX |
-  | XXXXXXXXXXXXXXXX |
-   __________________ 
-*/
 
 /*
  * Setup
@@ -34,11 +28,6 @@ void setup() {
 void loop() {
 
   if (Serial.available() > 0) { incomingByte = Serial.read(); }
-
-  // TODO: Here, parse incomingByte using a specific char
-  // [0] = status (f, b, s, u)
-  // [1] = msg
-  // [2] = ???
  
   if (incomingByte == 'f') {
     red();

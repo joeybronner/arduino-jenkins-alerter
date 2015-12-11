@@ -2,22 +2,39 @@
  * Oter methods
  */
 
+/* Switch ON green led */
 void green() {
   ledOn(grePin);
   ledOff(redPin);
   ledOff(yelPin);  
 }
 
+/* Switch ON yeklow led */
 void yellow() {
   ledOff(grePin);
   ledOn(yelPin);
   ledOff(redPin);
 }
 
+/* Switch ON red led */
 void red() {
   ledOff(grePin);
   ledOff(yelPin);
   ledOn(redPin);
+}
+
+/* Switch ON all leds */
+void all() {
+  ledOn(grePin);
+  ledOn(yelPin);
+  ledOn(redPin);
+}
+
+/* Switch OFF all leds */
+void noOne() {
+  ledOff(grePin);
+  ledOff(yelPin);
+  ledOff(redPin);
 }
 
 /*
@@ -48,11 +65,12 @@ void ledInitialization() {
 
 void ledWaiting() {
   green();
-  delay(1000);
+  delay(200);
   yellow();
-  delay(1000);
+  delay(200);
   red();
-  delay(1000);
+  delay(200);
+  noOne();
 }
 
 /*
@@ -63,7 +81,7 @@ void screenInitialization() {
   lcd.begin(16,2);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("smartbi-orig/mas");
+  lcd.print(projectName);
 }
 
 /*
@@ -77,7 +95,7 @@ void screenInitialization() {
     lcd.print("                ");
     lcd.setCursor(i, 1);
     lcd.print(">>>");
-    delay(100);
+    delay(75);
   }
  }
 
