@@ -1,8 +1,5 @@
 __author__ = 'Joey Bronner'
 
-# TODO : Launch this python script using a bat file or another think like this
-# TODO : ???
-
 # Imported libraries
 import json
 import sys
@@ -18,7 +15,6 @@ SUCCESS = 's'
 FAILURE = 'f'
 BUILDING = 'b'
 UNSTABLE = 'u'
-#JENKINS_START_URL = 'http://dewdflhana1265.emea.global.corp.sap:8080/job/'
 JENKINS_START_URL = 'http://dewdflhana1265.emea.global.corp.sap:8080/view/SBI-UI/job/'
 JENKINS_END_URL = '/lastBuild/api/json'
 JOBS = ['build-sbi-ui-master']
@@ -34,7 +30,7 @@ def get_status(jobName):
     try:
         stream = urllib2.urlopen(JENKINS_START_URL + jobName + JENKINS_END_URL)
     except urllib2.HTTPError, e:
-        print 'Error: Problem with URL, ' + str(e.code)
+        print 'Error: Problem with URL: ' + str(e.code)
         sys.exit(2)
 
     # Parse response for global job URL
@@ -43,8 +39,7 @@ def get_status(jobName):
     except:
         print "Error: Failed to parse JSON file"
         sys.exit(3)
-    return jobName, buildStatus["timestamp"], buildStatus["result"], "comment", buildStatus["displayName"],
-    # buildStatus["comment"],
+    return jobName, buildStatus["timestamp"], buildStatus["result"]
 while(1):
     for job in JOBS:
         status = get_status(job)
